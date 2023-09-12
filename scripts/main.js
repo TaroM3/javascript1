@@ -26,7 +26,7 @@ const exchange = (currencySelected) => {
             console.log(`Has cambiado ${cantidadDePesos} pesos argentinos a ￥${yen}`)
             break
     }
-
+    console.log('Gracias por cambiar su moneda')
 }
 
 
