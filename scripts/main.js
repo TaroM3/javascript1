@@ -34,7 +34,7 @@ const mainMenu = () => {
 
     let currencySelected = ''
     do {
-        currencySelected = prompt('Elija el tipo de moneda que desea obtener:\n 1. USD\n 2. EURO\n 3. YEN\n ')
+        currencySelected = prompt('Bienvenido!\n Elija el tipo de moneda que desea obtener:\n 1. USD\n 2. EURO\n 3. YEN\n ')
     } while (currencySelected !== '1' && currencySelected !== '2' && currencySelected !== '3');
 
     exchange(currencySelected)
