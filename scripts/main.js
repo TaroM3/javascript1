@@ -9,7 +9,6 @@ const currencies = {
   YEN: 3,
 };
 
-
 const updateWallets = () => {
   $text("#ARS", getLS("ARS"));
   $text("#USD", getLS("USD"));
@@ -42,19 +41,16 @@ const exchange = (event) => {
         Number(getLS("ARS")) >= quantityWallet
           ? ARStoCurrency(currency, quantityWallet)
           : showErr("Fondos insuficientes. . . ");
-        // console.log(currencies[currency]);
         break;
       case "EURO":
         Number(getLS("ARS")) >= quantityWallet
           ? ARStoCurrency(currency, quantityWallet)
           : showErr("Fondos insuficientes. . . ");
-        // console.log(currencies[currency]);
         break;
       case "YEN":
         Number(getLS("ARS")) >= quantityWallet
           ? ARStoCurrency(currency, quantityWallet)
           : showErr("Fondos insuficientes. . . ");
-        // console.log(currencies[currency]);
         break;
     }
   }
