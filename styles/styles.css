@@ -1,0 +1,11 @@
+
+ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 1rem;
+}
+
+.error {
+    color: red;
+}

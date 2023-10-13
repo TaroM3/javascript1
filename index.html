@@ -5,9 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrega 1</title>
     <link rel="stylesheet" href="./styles/styles.css">
+    <script type="text/javascript" src="./scripts/utils.js" defer></script>
+    <script type="text/javascript" src="./scripts/main.js" defer></script>
 </head>
 <body>
-
-    <script type="text/javascript" src="./scripts/main.js"></script>
+    <header>
+        WALLET
+        <nav>
+            <ul>
+                <li>ARS: <span id="ARS"></span></li>
+                <li>USD: <span id="USD"></span></li>
+                <li>EURO: <span id="EURO"></span></li>
+                <li>YEN: <span id="YEN"></span></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2></h2>
+            <br action="" id="formulario">
+                <label for="wallet">Seleccione el valor que quiere cambiar de su wallet ARS:</label>
+                <input type="number" name="quantityWallet" id="quantityWallet"> 
+                <br > <br>
+                <label for="currency">Seleccione el tipo de moneda:</label>
+                <select name="currency" id="currency">
+                    <option value="USD">USD</option>
+                    <option value="EURO">EURO</option>
+                    <option value="YEN">YEN</option>
+                </select>
+                <input type="number" name="quantityCurrency" id="quantityCurrency" disabled="true">
+                <button type="submit" onclick="exchange(event)">Exchange</button>
+            </form>
+            <br> <br>
+            <span id="error" class="error"></span>
+        </section>
+    </main>
 </body>
 </html>

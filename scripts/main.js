@@ -1,44 +1,61 @@
+setLS("ARS", "2000000");
+setLS("USD", "0");
+setLS("EURO", "0");
+setLS("YEN", "0");
 
-const USD_VALUE = 750
-const EURO_VALUE = 800
-const YEN_VALUE = 3
+const currencies = {
+  USD: 750,
+  EURO: 800,
+  YEN: 3,
+};
 
 
-const exchange = (currencySelected) => {
+const updateWallets = () => {
+  $text("#ARS", getLS("ARS"));
+  $text("#USD", getLS("USD"));
+  $text("#EURO", getLS("EURO"));
+  $text("#YEN", getLS("YEN"));
+};
 
-    let cantidadDePesos = 0;
-    do {
-        cantidadDePesos = Number(prompt('Ingrese la cantidad de pesos'))
-        if (cantidadDePesos === 0) console.log('La cantidad de pesos debe ser distinta de 0.')
-    } while (cantidadDePesos === 0 || isNaN(cantidadDePesos));
-
-    switch (currencySelected) {
-        case '1':
-            const usd = (cantidadDePesos / USD_VALUE).toFixed(2)
-            console.log(`Has cambiado ${cantidadDePesos} pesos argentinos a $${usd}`)
-            break;
-        case '2':
-            const euro = (cantidadDePesos / EURO_VALUE).toFixed(2)
-            console.log(`Has cambiado ${cantidadDePesos} pesos argentinos a €${euro}`)
-            break
-        case '3':
-            const yen = (cantidadDePesos / YEN_VALUE).toFixed(2)
-            console.log(`Has cambiado ${cantidadDePesos} pesos argentinos a ￥${yen}`)
-            break
+updateWallets()
+const ARStoCurrency = (currency, quantityWallet) => {
+    if(quantityWallet >= 1000){
+        const exchanged = (quantityWallet / currencies[currency]).toFixed(2);
+        setLS(currency, exchanged);
+        const subtracted = Number(getLS("ARS")) - quantityWallet;
+        setLS("ARS", subtracted);
+        updateWallets()
+    }else{
+        showErr('El monto debe ser mayor o igual a 1000 ARS. . . ')
     }
-    console.log('Gracias por cambiar su moneda')
-}
+};
 
-
-const mainMenu = () => {
-
-    let currencySelected = ''
-    do {
-        currencySelected = prompt('Bienvenido!\n Elija el tipo de moneda que desea obtener:\n 1. USD\n 2. EURO\n 3. YEN\n ')
-    } while (currencySelected !== '1' && currencySelected !== '2' && currencySelected !== '3');
-
-    exchange(currencySelected)
-}
-
-
-mainMenu();
+const exchange = (event) => {
+  event.preventDefault();
+  const currency = $val("#currency");
+  const quantityWallet = $val("#quantityWallet");
+  if (quantityWallet === "") {
+    showErr("Ingrese el la cantidad de pesos. . . ");
+  } else {
+    switch (currency) {
+      case "USD":
+        Number(getLS("ARS")) >= quantityWallet
+          ? ARStoCurrency(currency, quantityWallet)
+          : showErr("Fondos insuficientes. . . ");
+        // console.log(currencies[currency]);
+        break;
+      case "EURO":
+        Number(getLS("ARS")) >= quantityWallet
+          ? ARStoCurrency(currency, quantityWallet)
+          : showErr("Fondos insuficientes. . . ");
+        // console.log(currencies[currency]);
+        break;
+      case "YEN":
+        Number(getLS("ARS")) >= quantityWallet
+          ? ARStoCurrency(currency, quantityWallet)
+          : showErr("Fondos insuficientes. . . ");
+        // console.log(currencies[currency]);
+        break;
+    }
+  }
+};
